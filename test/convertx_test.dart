@@ -1,4 +1,4 @@
-//import 'dart:typed_data';
+import 'dart:typed_data';
 
 import 'package:convertx/convertx.dart';
 import 'package:test/test.dart';
@@ -243,6 +243,155 @@ void main() {
           expect(testRunner(), matcher);
           // other checks
           expect(testRunner(), isA<Set>());
+        });
+      });
+    });
+  });
+  group('any byte list', () {
+    // declare input
+    Uint8List input;
+    group('should be converted into', () {
+      group('an ASCII String', () {
+        group('w/out allowing invalid chars', () {
+          // prepare runner
+          testRunner() => input.toAsciiString();
+          test('(success)', () {
+            // prepare input
+            input = Uint8List.fromList(
+                [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]);
+            // declare matcher
+            final matcher = equals('Hello World!');
+            // check
+            expect(testRunner(), matcher);
+          });
+          test('(format exception)', () {
+            // prepare input
+            input = Uint8List.fromList(
+                [161, 72, 111, 108, 97, 32, 77, 117, 110, 100, 111, 33]);
+            // declare matcher
+            final matcher = throwsFormatException;
+            // check
+            expect(testRunner, matcher);
+          });
+        });
+        group('w/ allowing invalid chars', () {
+          // prepare runner
+          testRunner() => input.toAsciiString(allowInvalid: true);
+          test('(success)', () {
+            // prepare input
+            input = Uint8List.fromList(
+                [161, 72, 111, 108, 97, 32, 77, 117, 110, 100, 111, 33]);
+            // declare matcher
+            final matcher = equals('�Hola Mundo!');
+            // check
+            expect(testRunner(), matcher);
+          });
+        });
+      });
+      group('a Latin1 String', () {
+        // prepare runner
+        testRunner() => input.toLatin1String();
+        test('(success)', () {
+          // prepare input
+          input = Uint8List.fromList(
+              [161, 72, 111, 108, 97, 32, 77, 117, 110, 100, 111, 33]);
+          // declare matcher
+          final matcher = equals('¡Hola Mundo!');
+          // check
+          expect(testRunner(), matcher);
+        });
+        test('(bad decoding)', () {
+          // prepare input
+          input = Uint8List.fromList([228, 189, 160, 229, 165, 189, 239] +
+              [188, 140, 228, 184, 150, 231, 149, 140, 239, 188, 129]);
+          // declare matcher
+          final matcher = isNot(equals('你好，世界！'));
+          // check
+          expect(testRunner(), matcher);
+        });
+      });
+      group('an UTF-8 String', () {
+        group('w/out allowing malformed seqs', () {
+          // prepare runner
+          testRunner() => input.toUtf8String();
+          test('(success #1)', () {
+            // prepare input
+            input = Uint8List.fromList([228, 189, 160, 229, 165, 189, 239] +
+                [188, 140, 228, 184, 150, 231, 149, 140, 239, 188, 129]);
+            // declare matcher
+            final matcher = equals(equals('你好，世界！'));
+            // check
+            expect(testRunner(), matcher);
+          });
+          test('(success #2)', () {
+            // prepare input
+            input = Uint8List.fromList(
+                [240, 159, 145, 139, 240, 159, 140, 141, 33]);
+            // declare matcher
+            final matcher = equals(equals('👋🌍!'));
+            // check
+            expect(testRunner(), matcher);
+          });
+          test('(format exception)', () {
+            // prepare input
+            input = Uint8List.fromList([192, 193]);
+            // declare matcher
+            final matcher = throwsFormatException;
+            // check
+            expect(testRunner, matcher);
+          });
+        });
+        group('w/ allowing malformed seqs', () {
+          // prepare runner
+          testRunner() => input.toUtf8String(allowMalformed: true);
+          test('(success)', () {
+            // prepare input
+            input = Uint8List.fromList([192, 193]);
+            // declare matcher
+            final matcher = equals(equals('��'));
+            // check
+            expect(testRunner(), matcher);
+          });
+        });
+      });
+      group('a base64 String', () {
+        // prepare runner
+        testRunner() => input.toBase64String();
+        test('(success #1)', () {
+          // prepare input
+          input = Uint8List.fromList([0, 0, 0]);
+          // declare matcher
+          final matcher = equals('AAAA');
+          // check
+          expect(testRunner(), matcher);
+        });
+        test('(success #2)', () {
+          // prepare input
+          input = Uint8List.fromList([255, 255, 255]);
+          // declare matcher
+          final matcher = equals('////');
+          // check
+          expect(testRunner(), matcher);
+        });
+      });
+      group('a base64Url String', () {
+        // prepare runner
+        testRunner() => input.toBase64UrlString();
+        test('(success #1)', () {
+          // prepare input
+          input = Uint8List.fromList([0, 0, 0]);
+          // declare matcher
+          final matcher = equals('AAAA');
+          // check
+          expect(testRunner(), matcher);
+        });
+        test('(success #2)', () {
+          // prepare input
+          input = Uint8List.fromList([255, 255, 255]);
+          // declare matcher
+          final matcher = equals('____');
+          // check
+          expect(testRunner(), matcher);
         });
       });
     });
