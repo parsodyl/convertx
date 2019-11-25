@@ -79,21 +79,16 @@ extension Uint8ListConvertExtension on Uint8List {
   /// If [allowInvalid] is `true`, the converter will default to allowing invalid
   /// values, which will be decoded into the Unicode Replacement character
   /// `U+FFFD` (�). If not, an exception will be thrown.
-  String asciiDecode({bool allowInvalid = false}) {
-    return ascii.decode(this, allowInvalid: allowInvalid);
-  }
+  String asciiDecode({bool allowInvalid = false}) =>
+      ascii.decode(this, allowInvalid: allowInvalid);
 
   /// Encodes this list of bytes using
   /// [base64](https://tools.ietf.org/html/rfc4648) encoding.
-  String base64Encode() {
-    return base64.encode(this);
-  }
+  String base64Encode() => base64.encode(this);
 
   /// Encodes this list of bytes using
   /// [base64url](https://tools.ietf.org/html/rfc4648) encoding.
-  String base64UrlEncode() {
-    return base64Url.encode(this);
-  }
+  String base64UrlEncode() => base64Url.encode(this);
 
   /// Decodes this list of Latin 1 bytes to the corresponding string.
   String latin1Decode() => latin1.decode(this);
@@ -103,9 +98,8 @@ extension Uint8ListConvertExtension on Uint8List {
   /// If [allowMalformed] is `true` the decoder replaces invalid (or
   /// unterminated) character sequences with the Unicode Replacement character
   /// `U+FFFD` (�). Otherwise it throws a [FormatException].
-  String uft8Decode({bool allowMalformed = false}) {
-    return utf8.decode(this, allowMalformed: allowMalformed);
-  }
+  String uft8Decode({bool allowMalformed = false}) =>
+      utf8.decode(this, allowMalformed: allowMalformed);
 
   // SHORTHANDS
 
