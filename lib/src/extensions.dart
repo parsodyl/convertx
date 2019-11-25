@@ -138,5 +138,6 @@ extension JsonConvertExtension<T> on T {
   // SHORTHANDS
 
   /// Shorthand for [jsonEncode].
-  String toJsonString() => jsonEncode();
+  String toJsonString({dynamic toEncodable(dynamic object)}) =>
+      jsonEncode(toEncodable: toEncodable);
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:convertx/convertx.dart';
@@ -390,6 +391,49 @@ void main() {
           input = Uint8List.fromList([255, 255, 255]);
           // declare matcher
           final matcher = equals('____');
+          // check
+          expect(testRunner(), matcher);
+        });
+      });
+    });
+  });
+  group('any Dart object', () {
+    Object input;
+    group('should be converted into a JSON String', () {
+      group('w/out using toEncodable', () {
+        // prepare runner
+        dynamic testRunner() => input.toJsonString();
+        test('(success)', () {
+          // prepare input
+          input = {'hello': 'world'};
+          // declare matcher
+          final matcher = equals('{"hello":"world"}');
+          // check
+          expect(testRunner(), matcher);
+        });
+        test('(JsonUnsupportedObjectError)', () {
+          // prepare input
+          input = {'Athos', 'Porthos', 'Aramis'};
+          // declare matcher
+          final matcher = throwsA(TypeMatcher<JsonUnsupportedObjectError>());
+          // check
+          expect(testRunner, matcher);
+        });
+      });
+      group('w/ using toEncodable', () {
+        // prepare runner
+        dynamic testRunner() =>
+            input.toJsonString(toEncodable: (dynamic nonEncodable) {
+              if (nonEncodable is Set) {
+                return nonEncodable.toList(growable: false);
+              }
+              return nonEncodable;
+            });
+        test('(success)', () {
+          // prepare input
+          input = {'Athos', 'Porthos', 'Aramis'};
+          // declare matcher
+          final matcher = equals('["Athos","Porthos","Aramis"]');
           // check
           expect(testRunner(), matcher);
         });
