@@ -96,13 +96,7 @@ extension Uint8ListConvertExtension on Uint8List {
   }
 
   /// Decodes this list of Latin 1 bytes to the corresponding string.
-  ///
-  /// If [allowInvalid] is `true`, the converter will default to allowing invalid
-  /// values, which will be decoded into the Unicode Replacement character
-  /// `U+FFFD` (�). If not, an exception will be thrown.
-  String latin1Decode({bool allowInvalid = false}) {
-    return latin1.decode(this, allowInvalid: allowInvalid);
-  }
+  String latin1Decode() => latin1.decode(this);
 
   /// Decodes this list of UTF-8 code units (bytes) to the corresponding string.
   ///
@@ -126,8 +120,7 @@ extension Uint8ListConvertExtension on Uint8List {
   String toBase64UrlString() => base64UrlEncode();
 
   /// Shorthand for [latin1Decode].
-  String toLatin1String({bool allowInvalid = false}) =>
-      latin1Decode(allowInvalid: allowInvalid);
+  String toLatin1String({bool allowInvalid = false}) => latin1Decode();
 
   /// Shorthand for [uft8Decode].
   String toUtf8String({bool allowMalformed = false}) =>
