@@ -63,7 +63,8 @@ extension StringConvertExtension<T extends String> on T {
   String escapeHtml() => htmlEscapeConvert();
 
   /// Shorthand for [jsonDecode].
-  dynamic toDecodedJson() => jsonDecode();
+  dynamic toDecodedJson({dynamic reviver(Object key, Object value)}) =>
+      jsonDecode(reviver: reviver);
 
   /// Shorthand for [latin1Encode].
   Uint8List toLatin1ByteList() => latin1Encode();
