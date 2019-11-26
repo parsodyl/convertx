@@ -1,22 +1,60 @@
-A library for Dart developers.
+# convertx
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Static extension methods for converting between different data representations (aka **dart:convert** superpowered).
 
-## Usage
+## Getting started
 
-A simple usage example:
+Add this to your package's pubspec.yaml file:
+
+```yaml
+dependencies:
+  dartx: ^[version]
+```
+Then import this, so you can use the extensions:
 
 ```dart
 import 'package:convertx/convertx.dart';
+```
+## Overview
 
-void main() {
-  // TODO: do something
-}
+Convertx exposes the most common dart:convert functionalities.
+
+### base64:
+
+```dart
+final base64String = 'Hello World!'.toUtf8ByteList().toBase64String();
+print(base64String); // SGVsbG8gV29ybGQh
+
+final originalString = base64String.toBase64ByteList().toUtf8String();
+print(originalString); // Hello World!
 ```
 
-## Features and bugs
+### JSON:
 
-Please file feature requests and bugs at the [issue tracker][tracker].
+```dart
+final jsonString = {'answer': 42}.toJsonString();
+print(jsonString); // {"answer":42}
 
-[tracker]: http://example.com/issues/replaceme
+final originalMap = jsonString.toDecodedJson() as Map;
+print(originalMap); // {answer: 42}
+```
+
+### Escape HTML:
+
+```dart
+final html = '<strong>Romeo & Juliet</strong>'.escapeHtml();
+print(html); // &lt;strong&gt;Romeo &amp; Juliet&lt;&#47;strong&gt;
+```
+
+### Common string codecs:
+
+```dart
+// ASCII
+print('Hello World!'.toAsciiByteList().toAsciiString()); // Hello World!
+
+// Latin1
+print('¡Hola Mundo!'.toLatin1ByteList().toLatin1String()); // ¡Hola Mundo!
+
+// UTF-8
+print('你好，世界！'.toUtf8ByteList().toUtf8String()); // 你好，世界！
+```
