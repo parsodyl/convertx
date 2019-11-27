@@ -1,3 +1,7 @@
+// Copyright (c) 2019, Daniele Paradiso.
+// Use of this source code is governed by a BSD-style license that can be found
+// in the LICENSE file.
+
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -50,25 +54,42 @@ extension StringConvertExtension<T extends String> on T {
 
   // SHORTHANDS
 
+  /// Converts this string into a list of ASCII bytes.
+  ///
   /// Shorthand for [asciiEncode].
   Uint8List toAsciiByteList() => asciiEncode();
 
+  /// Converts this [base64](https://tools.ietf.org/html/rfc4648)-encoded
+  /// string into a list of bytes.
+  ///
   /// Shorthand for [base64Decode].
   Uint8List toBase64ByteList() => base64Decode();
 
+  /// Converts this [base64url](https://tools.ietf.org/html/rfc4648)-encoded
+  /// string into a list of bytes.
+  ///
   /// Shorthand for [base64UrlDecode].
   Uint8List toBase64UrlByteList() => base64UrlDecode();
 
+  /// Converts this string into something equivalent escaping all characters
+  /// with special meaning in HTML.
+  ///
   /// Shorthand for [htmlEscapeConvert].
   String escapeHtml() => htmlEscapeConvert();
 
+  /// Parses this string and returns the resulting JSON object.
+  ///
   /// Shorthand for [jsonDecode].
   dynamic toDecodedJson({dynamic reviver(Object key, Object value)}) =>
       jsonDecode(reviver: reviver);
 
+  /// Coverts this string into a list of Latin 1 bytes.
+  ///
   /// Shorthand for [latin1Encode].
   Uint8List toLatin1ByteList() => latin1Encode();
 
+  /// Converts this string into a list of UTF-8 code units (bytes).
+  ///
   /// Shorthand for [utf8Encode].
   Uint8List toUtf8ByteList() => utf8Encode();
 }
@@ -103,19 +124,31 @@ extension Uint8ListConvertExtension on Uint8List {
 
   // SHORTHANDS
 
+  /// Decodes this list of ASCII bytes to the corresponding string.
+  ///
   /// Shorthand for [asciiDecode].
   String toAsciiString({bool allowInvalid = false}) =>
       asciiDecode(allowInvalid: allowInvalid);
 
+  /// Encodes this list of bytes using
+  /// [base64](https://tools.ietf.org/html/rfc4648) encoding.
+  ///
   /// Shorthand for [base64Encode].
   String toBase64String() => base64Encode();
 
+  /// Encodes this list of bytes using
+  /// [base64url](https://tools.ietf.org/html/rfc4648) encoding.
+  ///
   /// Shorthand for [base64UrlEncode].
   String toBase64UrlString() => base64UrlEncode();
 
+  /// Decodes this list of Latin 1 bytes to the corresponding string.
+  ///
   /// Shorthand for [latin1Decode].
   String toLatin1String({bool allowInvalid = false}) => latin1Decode();
 
+  /// Decodes this list of UTF-8 code units (bytes) to the corresponding string.
+  ///
   /// Shorthand for [uft8Decode].
   String toUtf8String({bool allowMalformed = false}) =>
       uft8Decode(allowMalformed: allowMalformed);
@@ -137,6 +170,8 @@ extension JsonConvertExtension<T> on T {
 
   // SHORTHANDS
 
+  /// Converts this object to a JSON string.
+  ///
   /// Shorthand for [jsonEncode].
   String toJsonString({dynamic toEncodable(dynamic object)}) =>
       jsonEncode(toEncodable: toEncodable);

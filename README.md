@@ -1,6 +1,6 @@
 # convertx
 
-[![Dart CI](https://github.com/parsodyl/json_string/workflows/Dart%20CI/badge.svg)](https://github.com/parsodyl/json_string/actions) [![codecov](https://codecov.io/gh/parsodyl/convertx/branch/master/graph/badge.svg)](https://codecov.io/gh/parsodyl/convertx) [![pub package](https://img.shields.io/pub/v/convertx.svg)](https://pub.dartlang.org/packages/convertx) 
+[![Dart CI](https://github.com/parsodyl/json_string/workflows/Dart%20CI/badge.svg)](https://github.com/parsodyl/json_string/actions) [![codecov](https://codecov.io/gh/parsodyl/convertx/branch/master/graph/badge.svg)](https://codecov.io/gh/parsodyl/convertx) [![pub package](https://img.shields.io/pub/v/convertx.svg)](https://pub.dartlang.org/packages/convertx) [![dart>=2.6 ](https://img.shields.io/badge/dart-%3E%3D2.6-lightblue.svg)](https://github.com/dart-lang/sdk/blob/master/CHANGELOG.md)
 
 Static extension methods for converting between different data representations.
 
