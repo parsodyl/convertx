@@ -1,8 +1,8 @@
 name: convertx
 description: Encoders and decoders for converting between different data representations, using extensions.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/parsodyl/convertx
-author: Daniele Paradiso (mac) <parsodyl@gmail.com>
+author: Daniele Paradiso <parsodyl@gmail.com>
 
 environment:
   sdk: '>=2.6.0-dev <3.0.0'
