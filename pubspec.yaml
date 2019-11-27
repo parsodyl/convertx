@@ -1,6 +1,6 @@
 name: convertx
-description: Encoders and decoders for converting between different data representations, using extensions.
-version: 0.1.0
+description: Static extension methods for converting between different data representations.
+version: 0.1.1
 homepage: https://github.com/parsodyl/convertx
 author: Daniele Paradiso <parsodyl@gmail.com>
 
