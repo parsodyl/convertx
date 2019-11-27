@@ -1,6 +1,6 @@
 name: convertx
 description: Static extension methods for converting between different data representations.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/parsodyl/convertx
 author: Daniele Paradiso <parsodyl@gmail.com>
 

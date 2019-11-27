@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Update test dependency.
+
 ## 0.1.1
 
 - Fix docs.

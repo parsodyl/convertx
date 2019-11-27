@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  dartx: ^0.1.1
+  dartx: ^0.1.2
 ```
 Then import the following, so you can use the extensions:
 
