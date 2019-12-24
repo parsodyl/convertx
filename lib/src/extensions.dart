@@ -41,7 +41,7 @@ extension StringConvertExtension<T extends String> on T {
   /// properties, or `null` for the final result.
   ///
   /// The default [reviver] (when not provided) is the identity function.
-  dynamic jsonDecode({dynamic reviver(Object key, Object value)}) =>
+  dynamic jsonDecode({dynamic Function(Object key, Object value) reviver}) =>
       json.decode(this, reviver: reviver);
 
   /// Coverts this string into a list of Latin 1 bytes.
@@ -80,7 +80,7 @@ extension StringConvertExtension<T extends String> on T {
   /// Parses this string and returns the resulting JSON object.
   ///
   /// Shorthand for [jsonDecode].
-  dynamic toDecodedJson({dynamic reviver(Object key, Object value)}) =>
+  dynamic toDecodedJson({dynamic Function(Object key, Object value) reviver}) =>
       jsonDecode(reviver: reviver);
 
   /// Coverts this string into a list of Latin 1 bytes.
@@ -164,7 +164,7 @@ extension JsonConvertExtension<T> on T {
   ///
   /// If [toEncodable] is omitted, it defaults to a function that returns the
   /// result of calling `.toJson()` on the unencodable object.
-  String jsonEncode({dynamic toEncodable(dynamic object)}) {
+  String jsonEncode({dynamic Function(dynamic object) toEncodable}) {
     return json.encode(this, toEncodable: toEncodable);
   }
 
@@ -173,6 +173,6 @@ extension JsonConvertExtension<T> on T {
   /// Converts this object to a JSON string.
   ///
   /// Shorthand for [jsonEncode].
-  String toJsonString({dynamic toEncodable(dynamic object)}) =>
+  String toJsonString({dynamic Function(dynamic object) toEncodable}) =>
       jsonEncode(toEncodable: toEncodable);
 }
