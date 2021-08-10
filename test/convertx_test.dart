@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   group('any String', () {
     // declare input
-    String input;
+    var input = '';
     group('should be converted into', () {
       group('a list of ASCII bytes', () {
         // prepare runner
@@ -97,7 +97,7 @@ void main() {
   });
   group('a base64 String', () {
     // declare input
-    String input;
+    var input = '';
     group('should be converted into a list of bytes', () {
       // prepare runner
       testRunner() => input.toBase64ByteList();
@@ -146,7 +146,7 @@ void main() {
   });
   group('a base64Url String', () {
     // declare input
-    String input;
+    var input = '';
     group('should be converted into a list of bytes', () {
       // prepare runner
       testRunner() => input.toBase64UrlByteList();
@@ -195,7 +195,7 @@ void main() {
   });
   group('a JSON String', () {
     // declare input
-    String input;
+    var input = '';
     group('should be converted into a Dart object', () {
       group('w/out using reviver', () {
         // prepare runner
@@ -250,7 +250,7 @@ void main() {
   });
   group('any byte list', () {
     // declare input
-    Uint8List input;
+    var input = Uint8List(0);
     group('should be converted into', () {
       group('an ASCII String', () {
         group('w/out allowing invalid chars', () {
@@ -398,7 +398,7 @@ void main() {
     });
   });
   group('any Dart object', () {
-    Object input;
+    Object? input;
     group('should be converted into a JSON String', () {
       group('w/out using toEncodable', () {
         // prepare runner

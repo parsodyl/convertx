@@ -41,7 +41,7 @@ extension StringConvertExtension<T extends String> on T {
   /// properties, or `null` for the final result.
   ///
   /// The default [reviver] (when not provided) is the identity function.
-  dynamic jsonDecode({dynamic Function(Object key, Object value) reviver}) =>
+  dynamic jsonDecode({dynamic Function(Object? key, Object? value)? reviver}) =>
       json.decode(this, reviver: reviver);
 
   /// Coverts this string into a list of Latin 1 bytes.
@@ -80,7 +80,8 @@ extension StringConvertExtension<T extends String> on T {
   /// Parses this string and returns the resulting JSON object.
   ///
   /// Shorthand for [jsonDecode].
-  dynamic toDecodedJson({dynamic Function(Object key, Object value) reviver}) =>
+  dynamic toDecodedJson(
+          {Object? Function(Object? key, Object? value)? reviver}) =>
       jsonDecode(reviver: reviver);
 
   /// Coverts this string into a list of Latin 1 bytes.
@@ -100,7 +101,7 @@ extension Uint8ListConvertExtension on Uint8List {
   /// If [allowInvalid] is `true`, the converter will default to allowing invalid
   /// values, which will be decoded into the Unicode Replacement character
   /// `U+FFFD` (�). If not, an exception will be thrown.
-  String asciiDecode({bool allowInvalid = false}) =>
+  String asciiDecode({bool? allowInvalid = false}) =>
       ascii.decode(this, allowInvalid: allowInvalid);
 
   /// Encodes this list of bytes using
@@ -119,7 +120,7 @@ extension Uint8ListConvertExtension on Uint8List {
   /// If [allowMalformed] is `true` the decoder replaces invalid (or
   /// unterminated) character sequences with the Unicode Replacement character
   /// `U+FFFD` (�). Otherwise it throws a [FormatException].
-  String uft8Decode({bool allowMalformed = false}) =>
+  String uft8Decode({bool? allowMalformed = false}) =>
       utf8.decode(this, allowMalformed: allowMalformed);
 
   // SHORTHANDS
@@ -127,7 +128,7 @@ extension Uint8ListConvertExtension on Uint8List {
   /// Decodes this list of ASCII bytes to the corresponding string.
   ///
   /// Shorthand for [asciiDecode].
-  String toAsciiString({bool allowInvalid = false}) =>
+  String toAsciiString({bool? allowInvalid = false}) =>
       asciiDecode(allowInvalid: allowInvalid);
 
   /// Encodes this list of bytes using
@@ -145,12 +146,12 @@ extension Uint8ListConvertExtension on Uint8List {
   /// Decodes this list of Latin 1 bytes to the corresponding string.
   ///
   /// Shorthand for [latin1Decode].
-  String toLatin1String({bool allowInvalid = false}) => latin1Decode();
+  String toLatin1String({bool? allowInvalid = false}) => latin1Decode();
 
   /// Decodes this list of UTF-8 code units (bytes) to the corresponding string.
   ///
   /// Shorthand for [uft8Decode].
-  String toUtf8String({bool allowMalformed = false}) =>
+  String toUtf8String({bool? allowMalformed = false}) =>
       uft8Decode(allowMalformed: allowMalformed);
 }
 
@@ -164,7 +165,7 @@ extension JsonConvertExtension<T> on T {
   ///
   /// If [toEncodable] is omitted, it defaults to a function that returns the
   /// result of calling `.toJson()` on the unencodable object.
-  String jsonEncode({dynamic Function(dynamic object) toEncodable}) {
+  String jsonEncode({Object? Function(Object? object)? toEncodable}) {
     return json.encode(this, toEncodable: toEncodable);
   }
 
@@ -173,6 +174,6 @@ extension JsonConvertExtension<T> on T {
   /// Converts this object to a JSON string.
   ///
   /// Shorthand for [jsonEncode].
-  String toJsonString({dynamic Function(dynamic object) toEncodable}) =>
+  String toJsonString({Object? Function(Object? object)? toEncodable}) =>
       jsonEncode(toEncodable: toEncodable);
 }
