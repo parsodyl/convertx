@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yaml
 dependencies:
-  convertx: ^0.1.4
+  convertx: ^0.2.0
 ```
 Then import the following, so you can use the extensions:
 
