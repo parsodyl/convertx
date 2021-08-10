@@ -11,7 +11,7 @@ void main() {
     group('should be converted into', () {
       group('a list of ASCII bytes', () {
         // prepare runner
-        testRunner() => input.toAsciiByteList();
+        dynamic testRunner() => input.toAsciiByteList();
         test('(success)', () {
           // prepare input
           input = 'Hello World!';
@@ -32,7 +32,7 @@ void main() {
       });
       group('a list of Latin1 bytes', () {
         // prepare runner
-        testRunner() => input.toLatin1ByteList();
+        dynamic testRunner() => input.toLatin1ByteList();
         test('(success)', () {
           // prepare input
           input = '¡Hola Mundo!';
@@ -53,7 +53,7 @@ void main() {
       });
       group('a list of UTF-8 bytes', () {
         // prepare runner
-        testRunner() => input.toUtf8ByteList();
+        dynamic testRunner() => input.toUtf8ByteList();
         test('(success #1)', () {
           // prepare input
           input = '你好，世界！';
@@ -74,7 +74,7 @@ void main() {
       });
       group('an escaped html string', () {
         // prepare runner
-        testRunner() => input.escapeHtml();
+        dynamic testRunner() => input.escapeHtml();
         test('(success #1)', () {
           // prepare input
           input = '<strong>Hello World!</strong>';
@@ -100,7 +100,7 @@ void main() {
     var input = '';
     group('should be converted into a list of bytes', () {
       // prepare runner
-      testRunner() => input.toBase64ByteList();
+      dynamic testRunner() => input.toBase64ByteList();
       test('(success #1)', () {
         // prepare input
         input = 'SGVsbG8gV29ybGQh';
@@ -149,7 +149,7 @@ void main() {
     var input = '';
     group('should be converted into a list of bytes', () {
       // prepare runner
-      testRunner() => input.toBase64UrlByteList();
+      dynamic testRunner() => input.toBase64UrlByteList();
       test('(success #1)', () {
         // prepare input
         input = 'SGVsbG8gV29ybGQh';
@@ -255,7 +255,7 @@ void main() {
       group('an ASCII String', () {
         group('w/out allowing invalid chars', () {
           // prepare runner
-          testRunner() => input.toAsciiString();
+          dynamic testRunner() => input.toAsciiString();
           test('(success)', () {
             // prepare input
             input = Uint8List.fromList(
@@ -277,7 +277,7 @@ void main() {
         });
         group('w/ allowing invalid chars', () {
           // prepare runner
-          testRunner() => input.toAsciiString(allowInvalid: true);
+          dynamic testRunner() => input.toAsciiString(allowInvalid: true);
           test('(success)', () {
             // prepare input
             input = Uint8List.fromList(
@@ -291,7 +291,7 @@ void main() {
       });
       group('a Latin1 String', () {
         // prepare runner
-        testRunner() => input.toLatin1String();
+        dynamic testRunner() => input.toLatin1String();
         test('(success)', () {
           // prepare input
           input = Uint8List.fromList(
@@ -314,7 +314,7 @@ void main() {
       group('an UTF-8 String', () {
         group('w/out allowing malformed seqs', () {
           // prepare runner
-          testRunner() => input.toUtf8String();
+          dynamic testRunner() => input.toUtf8String();
           test('(success #1)', () {
             // prepare input
             input = Uint8List.fromList([228, 189, 160, 229, 165, 189, 239] +
@@ -344,7 +344,7 @@ void main() {
         });
         group('w/ allowing malformed seqs', () {
           // prepare runner
-          testRunner() => input.toUtf8String(allowMalformed: true);
+          dynamic testRunner() => input.toUtf8String(allowMalformed: true);
           test('(success)', () {
             // prepare input
             input = Uint8List.fromList([192, 193]);
@@ -357,7 +357,7 @@ void main() {
       });
       group('a base64 String', () {
         // prepare runner
-        testRunner() => input.toBase64String();
+        dynamic testRunner() => input.toBase64String();
         test('(success #1)', () {
           // prepare input
           input = Uint8List.fromList([0, 0, 0]);
@@ -377,7 +377,7 @@ void main() {
       });
       group('a base64Url String', () {
         // prepare runner
-        testRunner() => input.toBase64UrlString();
+        dynamic testRunner() => input.toBase64UrlString();
         test('(success #1)', () {
           // prepare input
           input = Uint8List.fromList([0, 0, 0]);
