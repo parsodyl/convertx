@@ -5,7 +5,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-extension StringConvertExtension<T extends String> on T {
+extension StringConvertExtension on String {
   /// Converts this string into a list of ASCII bytes.
   ///
   /// The codec used is compliant with the standard "us-ascii" (ISO-IR-006).
@@ -101,7 +101,7 @@ extension Uint8ListConvertExtension on Uint8List {
   /// If [allowInvalid] is `true`, the converter will default to allowing invalid
   /// values, which will be decoded into the Unicode Replacement character
   /// `U+FFFD` (�). If not, an exception will be thrown.
-  String asciiDecode({bool? allowInvalid = false}) =>
+  String asciiDecode({bool allowInvalid = false}) =>
       ascii.decode(this, allowInvalid: allowInvalid);
 
   /// Encodes this list of bytes using
@@ -128,7 +128,7 @@ extension Uint8ListConvertExtension on Uint8List {
   /// Decodes this list of ASCII bytes to the corresponding string.
   ///
   /// Shorthand for [asciiDecode].
-  String toAsciiString({bool? allowInvalid = false}) =>
+  String toAsciiString({bool allowInvalid = false}) =>
       asciiDecode(allowInvalid: allowInvalid);
 
   /// Encodes this list of bytes using
