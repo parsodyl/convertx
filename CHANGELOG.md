@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Fix type misalignment.
+
 ## 0.2.0
 
 - Null safety migration.
