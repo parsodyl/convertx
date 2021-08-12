@@ -1,3 +1,8 @@
+## 0.2.2
+
+- Fix json extension type.
+
+
 ## 0.2.1
 
 - Fix type misalignment.
