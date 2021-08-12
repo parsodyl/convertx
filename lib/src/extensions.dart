@@ -155,7 +155,7 @@ extension Uint8ListConvertExtension on Uint8List {
       uft8Decode(allowMalformed: allowMalformed);
 }
 
-extension JsonConvertExtension<T> on T {
+extension JsonConvertExtension on Object? {
   /// Converts this object to a JSON string.
   ///
   /// If this objects contains other objects that are not directly encodable to
